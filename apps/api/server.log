@@ -1,0 +1,79 @@
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDatabaseModule dependencies initialized[39m[38;5;3m +54ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mShippingModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDiscoveryModule dependencies initialized[39m[38;5;3m +0ms[39m
+CheckoutService initialized. OrderService is: DEFINED
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEventEmitterModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCartModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEscrowModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCommerceModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCheckoutModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCatalogModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOrderModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSellerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuctionModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mAuctionGateway subscribed to the "auction:join" message[39m[38;5;3m +490ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mAuctionGateway subscribed to the "auction:leave" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mHealthController {/v1/health}:[39m[38;5;3m +2ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/health, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/v1/auth}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auth/register, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auth/login, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auth/refresh, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSellerController {/v1}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/seller/onboarding/submit, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/seller/me, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/seller/dashboard, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/sellers/:id/verification/in-review, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/sellers/:id/verification/approve, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/sellers/:id/verification/reject, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/sellers/:id/verification/needs-more-info, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/sellers/:id/verification/suspend, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCatalogController {/v1/catalog}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/categories, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/categories/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/categories/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/categories, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/categories/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/products, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/products/:id, PATCH} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/products/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/products, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/catalog/products/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuctionController {/v1/auctions}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auctions, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auctions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auctions/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auctions/:id/bid, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/auctions/:id/cancel, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCommerceController {/v1/commerce}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/commerce/reserve, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/commerce/reservations/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCartController {/v1/cart}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/cart, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/cart/items, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/cart/items/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/cart/items/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCheckoutController {/v1/checkout}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/checkout/initiate, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/checkout/confirm, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/checkout/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mOrderController {/v1}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/orders, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/orders/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/orders/:id/cancel, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/orders/:id/return, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/seller/orders, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/seller/orders/:id/status, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/seller/orders/:id/ship, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/orders/:id/shipment, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mEscrowController {/v1/admin/escrow}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/escrow, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/escrow/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/escrow/:id/release, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/escrow/:id/refund, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:17 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/v1/admin/escrow/:id/dispute, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 94593  - [39m05/29/2026, 11:13:19 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +1280ms[39m
+GBay API listening on http://localhost:4000/v1
