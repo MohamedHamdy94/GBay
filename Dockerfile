@@ -27,6 +27,9 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y openssl libssl-dev && rm -rf /var/lib/apt/lists/*
+
 ENV NODE_ENV=production
 
 # Copy necessary files from builder
