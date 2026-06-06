@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { BullModule } from '@nestjs/bullmq';
 import { DatabaseModule } from './database.module';
 import { AuthModule } from './auth/auth.module';
 import { SellerModule } from './seller/seller.module';
@@ -32,6 +33,13 @@ import { LoggerInterceptor } from './observability/logging/logger.interceptor';
 @Module({
   imports: [
     EventEmitterModule.forRoot(),
+    BullModule.forRoot({
+      connection: {
+        host: process.env.REDIS_HOST || 'localhost',
+        port: Number(process.env.REDIS_PORT || 6379),
+        password: process.env.REDIS_PASSWORD,
+      },
+    }),
     ThrottlerModule.forRoot([{
       name: 'short',
       ttl: 60000,

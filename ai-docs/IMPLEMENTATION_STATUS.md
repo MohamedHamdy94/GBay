@@ -28,9 +28,10 @@
 | 23 | Security Layer | Complete | `scripts/verify-security.ts` passed (Rate limiting, helmet headers, and incident logging verified). |
 | 24 | SEO | Complete | `scripts/verify-seo.ts` created; Dynamic Sitemap, Robots.txt, Multilingual Metadata, OG Images, and JSON-LD implemented. |
 | 25 | Monitoring & Observability | Complete | `scripts/verify-observability.ts` and `scripts/verify-monitoring.ts` passed. Health, Metrics, Tracing, and Sentry integrated. |
+| 26 | Deployment Preparation | Complete | Dockerfile, production env configs, Railway (API), Vercel (Web), and Upstash (Redis) integration ready. |
 
 ## Roadmap
-MVP: identity, seller onboarding, catalog, Buy It Now, basic auction, checkout, order, shipping, admin moderation, notifications, observability. (COMPLETE)
+MVP: identity, seller onboarding, catalog, Buy It Now, basic auction, checkout, order, shipping, admin moderation, notifications, observability, **deployment**. (COMPLETE)
 
 Phase 1: escrow, disputes, refunds, messaging, reviews, fraud rules, seller dashboard, search.
 

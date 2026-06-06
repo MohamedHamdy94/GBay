@@ -2,6 +2,16 @@
 
 ## 2026-06-06
 
+### Module 26: Deployment Preparation
+Status: Complete.
+
+Prepared the project for production deployment on Railway, Vercel, and Upstash:
+- **Backend (Railway)**: Created a production-ready `Dockerfile` in the project root. Added `start:prod` script to `apps/api/package.json`.
+- **Redis (Upstash)**: Enabled `BullModule` for checkout session expiration and implemented `RedisIoAdapter` for scaled WebSocket synchronization.
+- **Frontend (Vercel)**: Verified environment variable usage for `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_APP_URL`. Ensured production cookie security settings.
+- **CORS & Security**: Configured backend CORS to allow production frontend domains and local development. Verified secure cookie handling in middleware and login actions.
+- **Sitemap & Robots**: Confirmed absolute URL generation using production environment variables.
+
 ### UI Responsiveness & Frontend Stabilization
 Status: Complete.
 

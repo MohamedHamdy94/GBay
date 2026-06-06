@@ -14,11 +14,9 @@ import { OrderModule } from '../order/order.module';
 
 @Module({
   imports: [
-    /*
     BullModule.registerQueue({
       name: 'checkout-timeout',
     }),
-    */
     CartModule,
     CommerceModule,
     AuthModule,
