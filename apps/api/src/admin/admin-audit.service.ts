@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ADMIN_REPOSITORY } from './admin.service';
+import { ADMIN_REPOSITORY } from './admin.constants';
 import { AdminRepository } from './admin.types';
 
 @Injectable()

@@ -1,6 +1,8 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { AdminRepository } from './admin.types';
 import { AdminAuditService } from './admin-audit.service';
+import { ADMIN_REPOSITORY } from './admin.constants';
+export { ADMIN_REPOSITORY };
 import { 
   PaginationQueryDto, 
   UserSearchQueryDto, 
@@ -16,8 +18,6 @@ import {
   UpdateListingStatusDto, 
   ResolveDisputeDto 
 } from './dto';
-
-export const ADMIN_REPOSITORY = Symbol('ADMIN_REPOSITORY');
 
 @Injectable()
 export class AdminService {
