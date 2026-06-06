@@ -9,7 +9,7 @@ export const CATALOG_REPOSITORY = Symbol('CATALOG_REPOSITORY');
 export class CatalogService {
   constructor(
     @Inject(CATALOG_REPOSITORY) private readonly repository: CatalogRepository,
-    private readonly eventEmitter: EventEmitter2,
+    @Inject(EventEmitter2) private readonly eventEmitter: EventEmitter2,
   ) {}
 
   async createCategory(input: CreateCategoryInput) {

@@ -126,7 +126,15 @@
     "like_new": "Wie neu",
     "used": "Gebraucht",
     "saving": "Speichern...",
-    "save_product": "Produkt speichern"
+    "save_product": "Produkt speichern",
+    "category": "Kategorie",
+    "select_category": "Kategorie auswählen",
+    "starting_bid": "Startgebot (in Cents)",
+    "reserve_price": "Mindestpreis (in Cents, optional)",
+    "auction_duration": "Auktionsdauer",
+    "days_3": "3 Tage",
+    "days_7": "7 Tage",
+    "days_14": "14 Tage"
   },
   "onboarding": {
     "title": "Verkäufer werden",
@@ -144,7 +152,8 @@
     "auctions": "Auktionen",
     "orders": "Bestellungen",
     "payments": "Zahlungen & Treuhand",
-    "refunds": "Rückerstattungen & Konflikte",
+    "refunds": "Rückerstattungen",
+    "disputes": "Konfliktmanagement",
     "fraud": "Betrugsüberwachung",
     "messages": "Nachrichtenberichte",
     "notifications": "Benachrichtigungen",
@@ -201,7 +210,16 @@
     "country": "Land",
     "card_placeholder": "Kartennummer",
     "expiry": "MM/JJ",
-    "cvv": "CVV"
+    "cvv": "CVV",
+    "processing_payment": "Zahlung wird verarbeitet...",
+    "please_wait": "Bitte schließen Sie dieses Fenster nicht, während wir Ihre Transaktion sichern.",
+    "payment_success": "Zahlung erfolgreich!",
+    "redirecting": "Weiterleitung zur Bestellbestätigung...",
+    "order_complete": "Bestellung abgeschlossen!",
+    "thank_you": "Vielen Dank für Ihren Einkauf.",
+    "order_number": "Bestellnummer",
+    "back_to_shop": "Zurück zum Shop",
+    "view_orders": "Meine Bestellungen ansehen"
   },
   "orders": {
     "title": "Meine Bestellungen",
@@ -243,5 +261,25 @@
     "title": "GBay - Marktplatz der nächsten Generation",
     "description": "Kaufen und verkaufen Sie einzigartige Artikel auf GBay, der weltweit fortschrittlichsten Auktionsplattform.",
     "keywords": "Marktplatz, Auktion, kaufen, verkaufen, gbay"
+  },
+  "auctions": {
+    "history": "Gebotsverlauf",
+    "bidder": "Bieter",
+    "amount": "Betrag",
+    "time": "Zeit",
+    "no_bids": "Noch keine Gebote. Sei der Erste!",
+    "auction_ended": "Auktion beendet",
+    "watchers": "Beobachter",
+    "bids": "Gebote",
+    "ends_in": "Endet in",
+    "anti_sniping": "Anti-Sniping-Schutz aktiv",
+    "current_bid": "Aktueller Preis",
+    "starting_price": "Startpreis",
+    "bid_amount": "Gebotsbetrag",
+    "place_bid_btn": "Gebot abgeben",
+    "proxy_bid": "Als Proxy-Gebot abgeben (Auto-Gebot)",
+    "proxy_bid_desc": "Wir bieten in Ihrem Namen bis zu diesem Betrag.",
+    "bid_success": "Ihr Gebot wurde erfolgreich abgegeben!",
+    "bid_error": "Gebot konnte nicht abgegeben werden. Bitte versuchen Sie es erneut."
   }
 }

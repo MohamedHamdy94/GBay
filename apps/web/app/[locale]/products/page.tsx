@@ -12,6 +12,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { fetchApi } from "@/lib/api";
+import { Filter } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 async function searchProducts(searchParams: { [key: string]: string | string[] | undefined }): Promise<{ items: Product[], total: number }> {
   const query = new URLSearchParams();
@@ -43,59 +51,86 @@ export default async function ProductsPage({
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations("products");
   const data = await searchProducts(resolvedSearchParams);
+
+  const filtersContent = (
+    <form className="space-y-6">
+      <div className="space-y-2">
+        <Label htmlFor="q">{t("search") || "Search"}</Label>
+        <Input 
+          id="q" 
+          name="q" 
+          defaultValue={resolvedSearchParams.q as string} 
+          placeholder={t("search_placeholder") || "Search items..."} 
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <Label>{t("status") || "Listing Type"}</Label>
+        <Select name="status" defaultValue={(resolvedSearchParams.status as string) || "all"}>
+          <SelectTrigger>
+            <SelectValue placeholder={t("all_types") || "All Types"} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t("all_types") || "All Types"}</SelectItem>
+            <SelectItem value="AUCTION">{t("auction") || "Auction"}</SelectItem>
+            <SelectItem value="BUY_IT_NOW">{t("buy_it_now") || "Buy It Now"}</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Button type="submit" className="w-full">{t("apply_filters") || "Apply Filters"}</Button>
+    </form>
+  );
   
   return (
     <div className="container py-8 px-4 md:px-6">
       <div className="flex flex-col md:flex-row gap-8">
         
-        {/* Sidebar Filters */}
-        <aside className="w-full md:w-64 space-y-6">
-          <form className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="q">{t("search") || "Search"}</Label>
-              <Input 
-                id="q" 
-                name="q" 
-                defaultValue={resolvedSearchParams.q as string} 
-                placeholder={t("search_placeholder") || "Search items..."} 
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label>{t("status") || "Listing Type"}</Label>
-              <Select name="status" defaultValue={(resolvedSearchParams.status as string) || "all"}>
-                <SelectTrigger>
-                  <SelectValue placeholder={t("all_types") || "All Types"} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t("all_types") || "All Types"}</SelectItem>
-                  <SelectItem value="AUCTION">{t("auction") || "Auction"}</SelectItem>
-                  <SelectItem value="BUY_IT_NOW">{t("buy_it_now") || "Buy It Now"}</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button type="submit" className="w-full">{t("apply_filters") || "Apply Filters"}</Button>
-          </form>
+        {/* Desktop Sidebar Filters */}
+        <aside className="hidden md:block w-64 space-y-6">
+          <div className="sticky top-24">
+            <h2 className="text-lg font-semibold mb-4">Filters</h2>
+            {filtersContent}
+          </div>
         </aside>
 
         {/* Product Grid */}
         <div className="flex-1">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h1 className="text-2xl font-bold tracking-tight">
               {t("title") || "Products"} <span className="text-muted-foreground text-lg font-normal">({data.total})</span>
             </h1>
             
-            <Select defaultValue="newest">
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder={t("sort_by") || "Sort by"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="newest">{t("sort_newest") || "Newest Arrivals"}</SelectItem>
-                <SelectItem value="price_asc">{t("price_low_high") || "Price: Low to High"}</SelectItem>
-                <SelectItem value="price_desc">{t("price_high_low") || "Price: High to Low"}</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="flex items-center gap-2">
+              {/* Mobile Filter Trigger */}
+              <div className="md:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" size="sm" className="gap-2">
+                      <Filter className="h-4 w-4" />
+                      {t("filters") || "Filters"}
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="right">
+                    <SheetHeader className="mb-6">
+                      <SheetTitle>Filters</SheetTitle>
+                    </SheetHeader>
+                    {filtersContent}
+                  </SheetContent>
+                </Sheet>
+              </div>
+
+              <Select defaultValue="newest">
+                <SelectTrigger className="w-full sm:w-[180px]">
+                  <SelectValue placeholder={t("sort_by") || "Sort by"} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">{t("sort_newest") || "Newest Arrivals"}</SelectItem>
+                  <SelectItem value="price_asc">{t("price_low_high") || "Price: Low to High"}</SelectItem>
+                  <SelectItem value="price_desc">{t("price_high_low") || "Price: High to Low"}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           {data.items.length > 0 ? (

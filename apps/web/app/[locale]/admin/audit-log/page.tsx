@@ -54,7 +54,7 @@ export default async function AdminAuditLogPage({
         <div>
           <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
             <FileText className="h-8 w-8 text-primary" />
-            Audit Logs
+            {t("audit_logs") || "Audit Logs"}
           </h1>
           <p className="text-muted-foreground mt-1">Trace all administrative actions and system configuration changes.</p>
         </div>

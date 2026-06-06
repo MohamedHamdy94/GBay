@@ -113,5 +113,27 @@ export class PrismaSellerRepository implements SellerRepository {
       where: { sellerId },
     });
   }
+
+  async getRecentOrders(sellerId: string, limit: number): Promise<RecentOrderMetric[]> {
+    const orders = await this.prisma.order.findMany({
+      where: { sellerId },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+      select: {
+        id: true,
+        status: true,
+        totalAmountCents: true,
+        currency: true,
+        createdAt: true,
+      },
+    });
+
+    return orders.map((o) => ({
+      id: o.id,
+      status: o.status,
+      amount: `${(o.totalAmountCents / 100).toFixed(2)} ${o.currency}`,
+      date: o.createdAt.toISOString(),
+    }));
+  }
 }
 

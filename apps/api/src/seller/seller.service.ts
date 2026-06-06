@@ -57,12 +57,14 @@ export class SellerService {
 
   async refreshDashboardMetrics(sellerId: string) {
     const totalListings = await this.repository.countProducts(sellerId);
+    const recentOrders = await this.repository.getRecentOrders(sellerId, 5);
     
     // In a real scenario, we would also query active auctions, sold items, etc.
-    // For now, we only have totalListings.
+    // For now, we only have totalListings and recentOrders.
     
     return this.repository.upsertDashboardMetrics(sellerId, {
       totalListings,
+      recentOrders,
     });
   }
 

@@ -1,10 +1,14 @@
 import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
+import { Inter } from 'next/font/google';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { NotificationListener } from '@/components/notification-listener';
 import '@/app/globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -40,8 +44,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const messages = await getMessages();
   
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={`min-h-screen flex flex-col bg-background text-foreground`}>
+    <html lang={locale} suppressHydrationWarning className={inter.variable}>
+      <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-1 flex flex-col">
@@ -49,6 +53,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           </main>
           <Footer />
           <Toaster />
+          <NotificationListener />
         </NextIntlClientProvider>
       </body>
     </html>

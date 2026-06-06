@@ -114,6 +114,11 @@ export class AdminController {
     return this.adminService.getDispute(id);
   }
 
+  @Patch('disputes/:id/review')
+  reviewDispute(@Req() req: any, @Param('id') id: string) {
+    return this.adminService.updateDisputeStatus(req.user.id, id, 'UNDER_REVIEW', 'Admin started review');
+  }
+
   @Patch('disputes/:id/resolve')
   resolveDispute(@Req() req: any, @Param('id') id: string, @Body() dto: ResolveDisputeDto) {
     return this.adminService.resolveDispute(req.user.id, id, dto);

@@ -1,10 +1,11 @@
 import { randomUUID } from 'node:crypto';
-import { SellerProfileView, SellerRepository, SubmitSellerInput, TransitionSellerInput, SellerDashboardMetricsView } from './seller.types';
+import { SellerProfileView, SellerRepository, SubmitSellerInput, TransitionSellerInput, SellerDashboardMetricsView, RecentOrderMetric } from './seller.types';
 
 export class InMemorySellerRepository implements SellerRepository {
   private readonly profiles = new Map<string, SellerProfileView>();
   private readonly metrics = new Map<string, SellerDashboardMetricsView>();
   private readonly productCounts = new Map<string, number>();
+  private readonly recentOrders = new Map<string, RecentOrderMetric[]>();
 
   async findByUserId(userId: string): Promise<SellerProfileView | null> {
     return [...this.profiles.values()].find((profile) => profile.userId === userId) ?? null;
@@ -75,8 +76,16 @@ export class InMemorySellerRepository implements SellerRepository {
     return this.productCounts.get(sellerId) ?? 0;
   }
 
+  async getRecentOrders(sellerId: string, limit: number): Promise<RecentOrderMetric[]> {
+    return this.recentOrders.get(sellerId)?.slice(0, limit) ?? [];
+  }
+
   // Helper for tests
   setProductCount(sellerId: string, count: number) {
     this.productCounts.set(sellerId, count);
+  }
+
+  setRecentOrders(sellerId: string, orders: RecentOrderMetric[]) {
+    this.recentOrders.set(sellerId, orders);
   }
 }

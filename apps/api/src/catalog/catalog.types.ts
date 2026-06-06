@@ -35,8 +35,13 @@ export interface MediaAssetInput {
 }
 
 export interface ListingInput {
+  type?: 'BUY_NOW' | 'AUCTION';
   buyNowPriceCents?: number;
   quantityTotal?: number;
+  startingBidCents?: number;
+  reservePriceCents?: number;
+  minBidIncrementCents?: number;
+  auctionDurationDays?: number;
 }
 
 export interface CreateProductInput {
@@ -101,9 +106,11 @@ export interface ProductView {
   }[];
   listings?: {
     id: string;
+    type: 'BUY_NOW' | 'AUCTION';
     buyNowPriceCents: number | null;
     quantityTotal: number;
     quantityAvailable: number;
+    auction?: any;
   }[];
 }
 

@@ -1,5 +1,26 @@
 # AI Changelog
 
+## 2026-06-06
+
+### UI Responsiveness & Frontend Stabilization
+Status: Complete.
+
+Implemented a comprehensive responsiveness layer across the marketplace and resolved critical build blockers:
+- **Mobile Navigation**: Implemented a "Hamburger" menu in the global `Header` using a new `Sheet` (drawer) component from ShadCN UI. The menu includes search and navigation links optimized for touch.
+- **Responsive Admin Sidebar**: Updated the Admin Panel layout to move the sidebar into a mobile-friendly drawer on smaller screens, ensuring the dashboard remains usable on all devices.
+- **Product Filter Drawer**: Redesigned the product listing page to move sidebar filters into a slide-out drawer on mobile, prioritizing product visibility.
+- **Table Optimization**: Wrapped data tables (Orders, Seller Dashboard) in responsive containers with horizontal scrolling to prevent layout breakage on mobile.
+- **Infrastructure**: Added `Sheet` and `Textarea` components from ShadCN UI.
+- **Build & Bug Fixes**:
+  - Fixed critical syntax errors in `seller/orders/page.tsx` (illegal `await` in map).
+  - Fixed incorrect imports from `next-navigation` and `@/i18n/routing`.
+  - Resolved TypeScript errors in `checkout/page.tsx` and `checkout/actions.ts` related to form action signatures.
+  - Added `name` attributes to checkout form inputs to enable functional order processing.
+  - Added a `warning` variant to the `Badge` component.
+  - Fixed `next.config.ts` type mismatches for `remotePatterns`.
+
+**The GBay marketplace is now fully responsive and stable for production builds.**
+
 ## 2026-05-31
 
 ### Module 25: Monitoring & Observability

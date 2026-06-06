@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { ShoppingCart, ShieldCheck, CreditCard } from "lucide-react";
 import { redirect } from "next/navigation";
+import { initiatePayment } from "./actions";
 
 async function getCart() {
   const cookieStore = await cookies();
@@ -59,80 +60,82 @@ export default async function CheckoutPage({ params }: { params: Promise<{ local
         {/* Checkout Form */}
         <div className="lg:col-span-2 space-y-8">
           
-          {/* Shipping Address */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <ShoppingCart className="h-5 w-5" />
-                {t("shipping_address")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="street">{t("street")}</Label>
-                <Input id="street" placeholder="Main St 123" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="city">{t("city")}</Label>
-                <Input id="city" placeholder="Berlin" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="state">{t("state")}</Label>
-                <Input id="state" placeholder="Berlin" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="zip">{t("zip")}</Label>
-                <Input id="zip" placeholder="10115" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="country">{t("country")}</Label>
-                <Input id="country" placeholder="Germany" required />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Payment Method */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CreditCard className="h-5 w-5" />
-                {t("payment_method")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="p-4 border-2 border-primary bg-primary/5 rounded-lg flex items-center justify-between">
-                 <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-2 rounded-md">
-                       <CreditCard className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Credit Card (Simulation)</p>
-                      <p className="text-xs text-muted-foreground">Ending in 4242</p>
-                    </div>
-                 </div>
-                 <div className="h-4 w-4 rounded-full border-2 border-primary flex items-center justify-center">
-                    <div className="h-2 w-2 rounded-full bg-primary" />
-                 </div>
-              </div>
-              
-              <div className="space-y-4 pt-2">
+          <form action={initiatePayment} id="checkout-form" className="space-y-8">
+            {/* Shipping Address */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ShoppingCart className="h-5 w-5" />
+                  {t("shipping_address")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2 md:col-span-2">
+                  <Label htmlFor="street">{t("street")}</Label>
+                  <Input id="street" name="street" placeholder="Main St 123" required />
+                </div>
                 <div className="space-y-2">
-                  <Label htmlFor="card">{t("card_placeholder")}</Label>
-                  <Input id="card" placeholder="4242 4242 4242 4242" required />
+                  <Label htmlFor="city">{t("city")}</Label>
+                  <Input id="city" name="city" placeholder="Berlin" required />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="state">{t("state")}</Label>
+                  <Input id="state" name="state" placeholder="Berlin" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="zip">{t("zip")}</Label>
+                  <Input id="zip" name="zip" placeholder="10115" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="country">{t("country")}</Label>
+                  <Input id="country" name="country" placeholder="Germany" required />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Payment Method */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CreditCard className="h-5 w-5" />
+                  {t("payment_method")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="p-4 border-2 border-primary bg-primary/5 rounded-lg flex items-center justify-between">
+                   <div className="flex items-center gap-3">
+                      <div className="bg-primary/10 p-2 rounded-md">
+                         <CreditCard className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium">Credit Card (Simulation)</p>
+                        <p className="text-xs text-muted-foreground">Ending in 4242</p>
+                      </div>
+                   </div>
+                   <div className="h-4 w-4 rounded-full border-2 border-primary flex items-center justify-center">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                   </div>
+                </div>
+                
+                <div className="space-y-4 pt-2">
                   <div className="space-y-2">
-                    <Label htmlFor="expiry">{t("expiry")}</Label>
-                    <Input id="expiry" placeholder="12/26" required />
+                    <Label htmlFor="card">{t("card_placeholder")}</Label>
+                    <Input id="card" name="card" placeholder="4242 4242 4242 4242" required />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="cvv">{t("cvv")}</Label>
-                    <Input id="cvv" placeholder="123" required />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="expiry">{t("expiry")}</Label>
+                      <Input id="expiry" name="expiry" placeholder="12/26" required />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="cvv">{t("cvv")}</Label>
+                      <Input id="cvv" name="cvv" placeholder="123" required />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </form>
 
         </div>
 
@@ -171,11 +174,9 @@ export default async function CheckoutPage({ params }: { params: Promise<{ local
               </div>
             </CardContent>
             <CardFooter>
-              <form action="/api/checkout/confirm" method="POST" className="w-full">
-                <Button type="submit" className="w-full h-12 text-lg rounded-full" size="lg">
-                  {t("place_order")}
-                </Button>
-              </form>
+              <Button type="submit" form="checkout-form" className="w-full h-12 text-lg rounded-full" size="lg">
+                {t("place_order")}
+              </Button>
             </CardFooter>
           </Card>
           

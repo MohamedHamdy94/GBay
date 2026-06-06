@@ -7,6 +7,7 @@ import { DatabaseModule } from '../database.module';
 import { AuthModule } from '../auth/auth.module';
 import { SellerModule } from '../seller/seller.module';
 import { NotificationListeners } from './notification.listeners';
+import { NotificationGateway } from './notification.gateway';
 
 @Module({
   imports: [DatabaseModule, AuthModule, SellerModule],
@@ -14,6 +15,7 @@ import { NotificationListeners } from './notification.listeners';
   providers: [
     NotificationService,
     NotificationListeners,
+    NotificationGateway,
     {
       provide: NOTIFICATION_REPOSITORY,
       useClass: PrismaNotificationRepository,

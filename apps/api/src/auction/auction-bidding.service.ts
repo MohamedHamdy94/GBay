@@ -6,11 +6,11 @@ import { AUCTION_REPOSITORY } from './auction.service';
 import { AuctionRepository, AuctionView, BidderType, BidView } from './auction.types';
 import { AuctionGateway } from './auction.gateway';
 import { MetricsService } from '../observability/metrics/metrics.service';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class AuctionBiddingService {
   private readonly redis: Redis | null = null;
-  private readonly prisma = new PrismaClient();
   private readonly memoryLocks = new Set<string>();
 
   constructor(
@@ -18,6 +18,7 @@ export class AuctionBiddingService {
     @Inject(EventEmitter2) private readonly eventEmitter: EventEmitter2,
     @Inject(AuctionGateway) private readonly gateway: AuctionGateway,
     @Inject(MetricsService) private readonly metricsService: MetricsService,
+    @Inject(PrismaService) private readonly prisma: PrismaService,
   ) {
     try {
       this.redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379', {

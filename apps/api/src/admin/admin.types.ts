@@ -53,5 +53,6 @@ export interface AdminRepository {
   updateSellerStatus(id: string, status: string, reason?: string): Promise<any>;
   updateListingStatus(id: string, status: string): Promise<any>;
   cancelAuction(id: string): Promise<any>;
+  updateDisputeStatus(id: string, status: string): Promise<any>;
   resolveDispute(id: string, status: string, resolution: string): Promise<any>;
 }

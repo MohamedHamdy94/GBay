@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { notFound } from "next-navigation";
+import { notFound } from "next/navigation";
 import { fetchApi } from "@/lib/api";
 import { AuctionDetailClient } from "@/components/auction/auction-detail-client";
 

@@ -4,6 +4,8 @@ import { NotificationService } from './notification.service';
 import { NotificationType } from '@gbay/database';
 import { SellerService } from '../seller/seller.service';
 
+import { NotificationGateway } from './notification.gateway';
+
 @Injectable()
 export class NotificationListeners {
   constructor(
@@ -11,12 +13,20 @@ export class NotificationListeners {
     private readonly notificationService: NotificationService,
     @Inject(SellerService)
     private readonly sellerService: SellerService,
+    @Inject(NotificationGateway)
+    private readonly gateway: NotificationGateway,
   ) {}
+
+  private async createAndNotify(input: any) {
+    const notification = await this.notificationService.create(input);
+    this.gateway.sendToUser(input.userId, notification);
+    return notification;
+  }
 
   @OnEvent('order.confirmed')
   async handleOrderConfirmed(payload: { orderId: string; sellerId: string }) {
     const seller = await this.sellerService.getSeller(payload.sellerId);
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: seller.userId,
       type: NotificationType.ORDER_CONFIRMED,
       title: 'New Order Confirmed',
@@ -27,7 +37,7 @@ export class NotificationListeners {
 
   @OnEvent('order.shipped')
   async handleOrderShipped(payload: { orderId: string; userId: string }) {
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.userId,
       type: NotificationType.ORDER_SHIPPED,
       title: 'Order Shipped',
@@ -38,7 +48,7 @@ export class NotificationListeners {
 
   @OnEvent('order.delivered')
   async handleOrderDelivered(payload: { orderId: string; userId: string }) {
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.userId,
       type: NotificationType.ORDER_DELIVERED,
       title: 'Order Delivered',
@@ -50,7 +60,7 @@ export class NotificationListeners {
   @OnEvent('order.cancelled')
   async handleOrderCancelled(payload: { orderId: string; userId: string; sellerId: string }) {
     // Notify buyer
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.userId,
       type: NotificationType.ORDER_CANCELLED,
       title: 'Order Cancelled',
@@ -59,7 +69,7 @@ export class NotificationListeners {
     });
     // Notify seller
     const seller = await this.sellerService.getSeller(payload.sellerId);
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: seller.userId,
       type: NotificationType.ORDER_CANCELLED,
       title: 'Order Cancelled',
@@ -71,7 +81,7 @@ export class NotificationListeners {
   @OnEvent('order.return_requested')
   async handleReturnRequested(payload: { orderId: string; sellerId: string }) {
     const seller = await this.sellerService.getSeller(payload.sellerId);
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: seller.userId,
       type: NotificationType.RETURN_REQUESTED,
       title: 'Return Requested',
@@ -82,7 +92,7 @@ export class NotificationListeners {
 
   @OnEvent('refund.completed')
   async handleRefundCompleted(payload: { refundId: string; buyerId: string }) {
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.buyerId,
       type: NotificationType.REFUND_COMPLETED,
       title: 'Refund Completed',
@@ -94,7 +104,7 @@ export class NotificationListeners {
   @OnEvent('dispute.opened')
   async handleDisputeOpened(payload: { disputeId: string; buyerId: string; sellerId: string }) {
     const seller = await this.sellerService.getSeller(payload.sellerId);
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: seller.userId,
       type: NotificationType.DISPUTE_OPENED,
       title: 'Dispute Opened',
@@ -106,7 +116,7 @@ export class NotificationListeners {
   @OnEvent('dispute.resolved')
   async handleDisputeResolved(payload: { disputeId: string; buyerId: string; sellerId: string; outcome: string }) {
     // Notify buyer
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.buyerId,
       type: NotificationType.DISPUTE_RESOLVED,
       title: 'Dispute Resolved',
@@ -115,7 +125,7 @@ export class NotificationListeners {
     });
     // Notify seller
     const seller = await this.sellerService.getSeller(payload.sellerId);
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: seller.userId,
       type: NotificationType.DISPUTE_RESOLVED,
       title: 'Dispute Resolved',
@@ -126,7 +136,7 @@ export class NotificationListeners {
 
   @OnEvent('message.received')
   async handleMessageReceived(payload: { threadId: string; senderId: string; recipientId: string; body: string }) {
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.recipientId,
       type: NotificationType.MESSAGE_RECEIVED,
       title: 'New Message',
@@ -138,7 +148,7 @@ export class NotificationListeners {
   @OnEvent('auction.won')
   async handleAuctionWon(payload: { auctionId: string; winnerId: string; sellerId: string; amountCents: number }) {
     // Notify winner
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.winnerId,
       type: NotificationType.AUCTION_WON,
       title: 'Auction Won!',
@@ -147,7 +157,7 @@ export class NotificationListeners {
     });
     // Notify seller
     const seller = await this.sellerService.getSeller(payload.sellerId);
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: seller.userId,
       type: NotificationType.AUCTION_WON,
       title: 'Auction Item Sold',
@@ -158,7 +168,7 @@ export class NotificationListeners {
 
   @OnEvent('auction.outbid')
   async handleAuctionOutbid(payload: { auctionId: string; userId: string; newPriceCents: number }) {
-    await this.notificationService.create({
+    await this.createAndNotify({
       userId: payload.userId,
       type: NotificationType.AUCTION_OUTBID,
       title: 'Outbid!',

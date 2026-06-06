@@ -61,13 +61,18 @@ export function DisputeActions({ disputeId, status, token }: DisputeActionsProps
 
     setLoading(true);
     try {
+      const apiStatus = outcome === 'BUYER' ? 'RESOLVED_BUYER' : 'RESOLVED_SELLER';
       const res = await fetchApi(`/admin/disputes/${disputeId}/resolve`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ outcome, resolution }),
+        body: JSON.stringify({ 
+          status: apiStatus, 
+          resolution,
+          reason: `Resolved in favor of ${outcome}`
+        }),
       });
 
       if (!res.ok) throw new Error("Failed to resolve dispute");

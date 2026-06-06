@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
+import { Gavel, ShoppingCart } from "lucide-react";
 
 export interface Product {
   id: string;
@@ -12,68 +14,102 @@ export interface Product {
   mainImage?: string;
   sellerId?: string;
   listings?: Array<{
+    id: string;
     buyNowPriceCents?: number;
     currency: string;
     type: string;
+    auction?: {
+      id: string;
+      currentHighestBidCents?: number;
+      startPriceCents: number;
+    };
   }>;
 }
 
 interface ProductCardProps {
   product: Product;
+  locale?: string;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, locale = "en" }: ProductCardProps) {
   const t = useTranslations("common");
   
   const activeListing = product.listings?.[0];
-  const priceCents = activeListing?.buyNowPriceCents || 0;
+  const isAuction = activeListing?.type === 'AUCTION' || product.status === 'AUCTION';
+  
+  const priceCents = isAuction 
+    ? (activeListing?.auction?.currentHighestBidCents || activeListing?.auction?.startPriceCents || 0)
+    : (activeListing?.buyNowPriceCents || 0);
+    
   const currency = activeListing?.currency || "EUR";
 
-  const formattedPrice = new Intl.NumberFormat(undefined, {
+  const formattedPrice = new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency,
   }).format(priceCents / 100);
 
   return (
-    <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-lg hover:border-primary/50">
-      <Link href={`/products/${product.id}`} className="block relative aspect-square overflow-hidden bg-muted">
+    <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-xl hover:border-primary/50 dark:hover:shadow-primary/5">
+      <Link href={`/products/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-muted">
         {product.mainImage ? (
-          <img
+          <Image
             src={product.mainImage}
             alt={product.title}
-            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            priority={false}
           />
         ) : (
-          <div className="flex items-center justify-center w-full h-full text-muted-foreground">
-            No Image
+          <div className="flex flex-col items-center justify-center w-full h-full text-muted-foreground bg-muted/50">
+            <ShoppingCart className="h-12 w-12 opacity-10 mb-2" />
+            <span className="text-xs uppercase tracking-widest opacity-30">No Image</span>
           </div>
         )}
-        {product.status === 'AUCTION' && (
-          <Badge className="absolute top-2 right-2 bg-accent text-accent-foreground">
-            {t("auction")}
-          </Badge>
-        )}
-      </Link>
-      <CardContent className="p-4 flex-grow">
-        <div className="text-xs text-muted-foreground mb-1 font-medium tracking-wider uppercase">
-          {product.condition}
+        
+        <div className="absolute top-2 left-2 flex flex-col gap-2">
+          {isAuction ? (
+            <Badge className="bg-destructive hover:bg-destructive text-destructive-foreground animate-pulse flex items-center gap-1 shadow-sm">
+              <Gavel className="h-3 w-3" />
+              <span>LIVE</span>
+            </Badge>
+          ) : (
+            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm border-none shadow-sm">
+              NEW
+            </Badge>
+          )}
         </div>
+      </Link>
+      
+      <CardContent className="p-4 flex-grow space-y-2">
+        <div className="flex justify-between items-start">
+          <span className="text-[10px] text-muted-foreground font-bold tracking-tighter uppercase border px-1.5 py-0.5 rounded">
+            {product.condition}
+          </span>
+        </div>
+        
         <Link href={`/products/${product.id}`}>
-          <h3 className="font-semibold text-lg line-clamp-1 group-hover:text-primary transition-colors">
+          <h3 className="font-bold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5rem]">
             {product.title}
           </h3>
         </Link>
-        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-          {product.description}
-        </p>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <span className="font-bold text-lg text-foreground">
-          {formattedPrice}
-        </span>
-        <Badge variant="secondary" className="capitalize text-xs">
-          {product.status.toLowerCase()}
-        </Badge>
+      
+      <CardFooter className="p-4 pt-0 flex flex-col items-start gap-1">
+        <div className="flex items-baseline gap-1.5">
+          <span className="font-black text-xl tracking-tight">
+            {formattedPrice}
+          </span>
+          {isAuction && (
+            <span className="text-[10px] text-muted-foreground font-medium uppercase">
+              Current Bid
+            </span>
+          )}
+        </div>
+        
+        <div className="w-full h-1 bg-muted rounded-full overflow-hidden mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="h-full bg-primary w-1/3 animate-progress" />
+        </div>
       </CardFooter>
     </Card>
   );

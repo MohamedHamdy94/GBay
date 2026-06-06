@@ -104,6 +104,8 @@ export class PrismaCatalogRepository implements CatalogRepository {
   }
 
   async createProduct(input: CreateProductInput): Promise<ProductView> {
+    const listingType = input.listing?.type || 'BUY_NOW';
+    
     return this.prisma.product.create({
       data: {
         sellerId: input.sellerId,
@@ -122,16 +124,32 @@ export class PrismaCatalogRepository implements CatalogRepository {
           create: {
             sellerId: input.sellerId,
             status: 'ACTIVE',
+            type: listingType,
             buyNowPriceCents: input.listing.buyNowPriceCents,
             quantityTotal: input.listing.quantityTotal ?? 1,
             quantityAvailable: input.listing.quantityTotal ?? 1,
+            auction: listingType === 'AUCTION' ? {
+              create: {
+                sellerId: input.sellerId,
+                startPriceCents: input.listing.startingBidCents || 100,
+                reservePriceCents: input.listing.reservePriceCents,
+                minBidIncrementCents: input.listing.minBidIncrementCents || 100,
+                startTime: new Date(),
+                endTime: new Date(Date.now() + (input.listing.auctionDurationDays || 7) * 24 * 60 * 60 * 1000),
+                status: 'ACTIVE',
+              }
+            } : undefined,
           }
         } : undefined,
       },
       include: {
         translations: true,
         media: true,
-        listings: true,
+        listings: {
+          include: {
+            auction: true,
+          }
+        },
       },
     }) as unknown as Promise<ProductView>;
   }

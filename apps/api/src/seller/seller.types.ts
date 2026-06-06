@@ -73,4 +73,5 @@ export interface SellerRepository {
   getDashboardMetrics(sellerId: string): Promise<SellerDashboardMetricsView | null>;
   upsertDashboardMetrics(sellerId: string, data: Partial<SellerDashboardMetricsView>): Promise<SellerDashboardMetricsView>;
   countProducts(sellerId: string): Promise<number>;
+  getRecentOrders(sellerId: string, limit: number): Promise<RecentOrderMetric[]>;
 }

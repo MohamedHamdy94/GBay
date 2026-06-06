@@ -291,6 +291,13 @@ export class PrismaAdminRepository implements AdminRepository {
     });
   }
 
+  async updateDisputeStatus(id: string, status: any) {
+    return this.prisma.dispute.update({
+      where: { id },
+      data: { status },
+    });
+  }
+
   async resolveDispute(id: string, status: any, resolution: string) {
     return this.prisma.dispute.update({
       where: { id },

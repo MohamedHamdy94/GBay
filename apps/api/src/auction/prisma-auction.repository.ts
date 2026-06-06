@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { PrismaClient, AuctionStatus as PrismaAuctionStatus } from '@gbay/database';
+import { PrismaService } from '../prisma.service';
 import {
   AuctionRepository,
   AuctionView,
@@ -11,7 +12,9 @@ import {
 
 @Injectable()
 export class PrismaAuctionRepository implements AuctionRepository {
-  private readonly prisma = new PrismaClient();
+  constructor(
+    @Inject(PrismaService) private readonly prisma: PrismaService
+  ) {}
 
   async create(input: CreateAuctionInput): Promise<AuctionView> {
     return this.prisma.auction.create({

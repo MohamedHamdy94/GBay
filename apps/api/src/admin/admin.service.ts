@@ -166,6 +166,20 @@ export class AdminService {
     return dispute;
   }
 
+  async updateDisputeStatus(adminId: string, id: string, status: string, reason?: string) {
+    const dispute = await this.repository.findDisputeById(id);
+    if (!dispute) throw new NotFoundException('Dispute not found');
+
+    const result = await this.repository.updateDisputeStatus(id, status);
+
+    await this.auditService.log(adminId, 'UPDATE_DISPUTE_STATUS', 'Dispute', id, {
+      previousStatus: dispute.status,
+      newStatus: status,
+    }, reason);
+
+    return result;
+  }
+
   async resolveDispute(adminId: string, id: string, dto: ResolveDisputeDto) {
     const dispute = await this.repository.findDisputeById(id);
     if (!dispute) throw new NotFoundException('Dispute not found');

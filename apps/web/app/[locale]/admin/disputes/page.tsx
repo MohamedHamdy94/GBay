@@ -53,7 +53,7 @@ export default async function AdminDisputesPage({
         <div>
           <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
             <ShieldAlert className="h-8 w-8 text-primary" />
-            Disputes Management
+            {t("disputes") || "Disputes Management"}
           </h1>
           <p className="text-muted-foreground mt-1">Investigate and resolve conflicts between buyers and sellers.</p>
         </div>

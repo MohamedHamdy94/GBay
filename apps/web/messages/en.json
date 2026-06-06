@@ -126,7 +126,15 @@
     "like_new": "Like New",
     "used": "Used",
     "saving": "Saving...",
-    "save_product": "Save Product"
+    "save_product": "Save Product",
+    "category": "Category",
+    "select_category": "Select a category",
+    "starting_bid": "Starting Bid (in Cents)",
+    "reserve_price": "Reserve Price (in Cents, Optional)",
+    "auction_duration": "Auction Duration",
+    "days_3": "3 Days",
+    "days_7": "7 Days",
+    "days_14": "14 Days"
   },
   "onboarding": {
     "title": "Become a Seller",
@@ -144,7 +152,8 @@
     "auctions": "Auctions",
     "orders": "Orders",
     "payments": "Payments & Escrow",
-    "refunds": "Refunds & Disputes",
+    "refunds": "Refunds",
+    "disputes": "Disputes Management",
     "fraud": "Fraud Monitoring",
     "messages": "Messaging Reports",
     "notifications": "Notifications",
@@ -201,7 +210,16 @@
     "country": "Country",
     "card_placeholder": "Card Number",
     "expiry": "MM/YY",
-    "cvv": "CVV"
+    "cvv": "CVV",
+    "processing_payment": "Processing payment...",
+    "please_wait": "Please do not close this window while we secure your transaction.",
+    "payment_success": "Payment Successful!",
+    "redirecting": "Redirecting to your order confirmation...",
+    "order_complete": "Order Complete!",
+    "thank_you": "Thank you for your purchase.",
+    "order_number": "Order Number",
+    "back_to_shop": "Back to Shop",
+    "view_orders": "View My Orders"
   },
   "orders": {
     "title": "My Orders",
@@ -243,5 +261,25 @@
     "title": "GBay - Next-Generation Marketplace",
     "description": "Buy and sell unique items on GBay, the world's most advanced auction platform.",
     "keywords": "marketplace, auction, buy, sell, gbay"
+  },
+  "auctions": {
+    "history": "Bid History",
+    "bidder": "Bidder",
+    "amount": "Amount",
+    "time": "Time",
+    "no_bids": "No bids yet. Be the first!",
+    "auction_ended": "Auction Ended",
+    "watchers": "watching",
+    "bids": "bids",
+    "ends_in": "Ends In",
+    "anti_sniping": "Anti-sniping protection active",
+    "current_bid": "Current Price",
+    "starting_price": "Starting Price",
+    "bid_amount": "Bid Amount",
+    "place_bid_btn": "Place Bid",
+    "proxy_bid": "Place as Proxy Bid (Auto-bid)",
+    "proxy_bid_desc": "We'll bid on your behalf up to this amount.",
+    "bid_success": "Your bid has been placed!",
+    "bid_error": "Failed to place bid. Please try again."
   }
 }

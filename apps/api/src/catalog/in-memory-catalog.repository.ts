@@ -74,6 +74,8 @@ export class InMemoryCatalogRepository implements CatalogRepository {
 
   async createProduct(input: CreateProductInput): Promise<ProductView> {
     const now = new Date();
+    const listingType = input.listing?.type || 'BUY_NOW';
+    
     const product: ProductView = {
       id: randomUUID(),
       sellerId: input.sellerId,
@@ -87,10 +89,21 @@ export class InMemoryCatalogRepository implements CatalogRepository {
       media: input.media?.map(m => ({ id: randomUUID(), ...m })) as any,
       listings: input.listing ? [{
         id: randomUUID(),
+        type: listingType as any,
         buyNowPriceCents: input.listing.buyNowPriceCents ?? null,
         quantityTotal: input.listing.quantityTotal ?? 1,
         quantityAvailable: input.listing.quantityTotal ?? 1,
-      }] : [],
+        auction: listingType === 'AUCTION' ? {
+          id: randomUUID(),
+          sellerId: input.sellerId,
+          startPriceCents: input.listing.startingBidCents || 100,
+          reservePriceCents: input.listing.reservePriceCents ?? null,
+          minBidIncrementCents: input.listing.minBidIncrementCents || 100,
+          startTime: now,
+          endTime: new Date(now.getTime() + (input.listing.auctionDurationDays || 7) * 24 * 60 * 60 * 1000),
+          status: 'ACTIVE',
+        } : undefined,
+      }] as any : [],
       createdAt: now,
       updatedAt: now,
     };

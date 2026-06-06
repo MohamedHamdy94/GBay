@@ -20,7 +20,7 @@ export class LoggerInterceptor implements NestInterceptor {
         const duration = Date.now() - startTime;
         
         // Log errors to our monitoring service for the admin dashboard
-        if (!(error instanceof HttpException) || error.getStatus() >= 500) {
+        if (this.monitoringService && (!(error instanceof HttpException) || error.getStatus() >= 500)) {
           this.monitoringService.logError({
             timestamp: new Date().toISOString(),
             message: error.message || 'Unknown error',

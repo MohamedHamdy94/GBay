@@ -94,7 +94,16 @@ export class MediaAssetDto {
   sortOrder?: number;
 }
 
+export enum ListingTypeDto {
+  BUY_NOW = 'BUY_NOW',
+  AUCTION = 'AUCTION',
+}
+
 export class ListingDto {
+  @IsEnum(ListingTypeDto)
+  @IsOptional()
+  type?: ListingTypeDto;
+
   @IsOptional()
   @IsInt()
   @Min(0)
@@ -104,6 +113,27 @@ export class ListingDto {
   @IsInt()
   @Min(1)
   quantityTotal?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  startingBidCents?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  reservePriceCents?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  minBidIncrementCents?: number;
+
+  @IsOptional()
+  @IsInt()
+  @IsNotEmpty()
+  @Type(() => Number)
+  auctionDurationDays?: number;
 }
 
 export class CreateProductDto {
