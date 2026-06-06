@@ -37,7 +37,7 @@ export class SearchIndexService implements OnModuleInit {
             'exactness',
           ],
         });
-      } catch (error) {
+      } catch (error: any) {
         console.error('Failed to update Meilisearch settings:', error);
       }
     }

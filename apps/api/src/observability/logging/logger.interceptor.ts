@@ -16,15 +16,15 @@ export class LoggerInterceptor implements NestInterceptor {
       tap(() => {
         // Log successful requests if needed, but nestjs-pino already does this
       }),
-      catchError((error) => {
+      catchError((error: any) => {
         const duration = Date.now() - startTime;
         
         // Log errors to our monitoring service for the admin dashboard
         if (this.monitoringService && (!(error instanceof HttpException) || error.getStatus() >= 500)) {
           this.monitoringService.logError({
             timestamp: new Date().toISOString(),
-            message: error.message || 'Unknown error',
-            stack: error.stack,
+            message: error?.message || 'Unknown error',
+            stack: error?.stack,
             path: url,
             method: method,
             userId: user?.id,

@@ -48,8 +48,8 @@ export class NotificationGateway implements OnGatewayConnection, OnGatewayDiscon
       this.userSockets.get(userId)!.add(client.id);
 
       this.logger.log(`User ${userId} connected to notifications`);
-    } catch (error) {
-      this.logger.error(`Notification connection error: ${error.message}`);
+    } catch (error: any) {
+      this.logger.error(`Notification connection error: ${error?.message || error}`);
       client.disconnect();
     }
   }
